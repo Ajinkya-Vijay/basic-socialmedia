@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import {Link, useNavigate} from "react-router-dom"
 
 function CreatePost() {
   const initialValues = {
@@ -9,6 +10,8 @@ function CreatePost() {
     postText: "",
     username: "",
   };
+
+  const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
     title: Yup.string().required("You must input a Title!"),
@@ -18,7 +21,7 @@ function CreatePost() {
 
   const onSubmit = (data) => {
     axios.post("http://localhost:3001/feed", data).then((response) => {
-      console.log("IT WORKED");
+        navigate('/')
     });
   };
   return (
