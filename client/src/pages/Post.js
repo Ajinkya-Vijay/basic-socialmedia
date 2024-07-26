@@ -36,7 +36,7 @@ function Post() {
         if(response.data.error){
           return  alert(response.data.error)
         }
-        const commentToAdd = { commentBody: newComment };
+        const commentToAdd = { commentBody: newComment, username : response.data.username };
         setComments([...comments, commentToAdd]);
         setNewComment("");
       });
@@ -71,6 +71,7 @@ function Post() {
             return (
               <div key={key} className="comment">
                 {comment.commentBody}
+                <label> Username: {comment.username}</label>
               </div>
             );
           })}
